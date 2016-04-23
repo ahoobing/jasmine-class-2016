@@ -21,7 +21,7 @@ define(['inventory'], function(inventory) {
 
             it('should return true when item is added to inventory successfully', function() {
 
-
+                expect(inventory.addItem(item1)).toBe(true);
             });
 
         });
@@ -30,6 +30,7 @@ define(['inventory'], function(inventory) {
 
             it('should return true when item is removed from the inventory successfully', function(){
 
+                expect(inventory.removeItem(item1)).toBe(true);
             });
 
         });

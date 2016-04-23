@@ -6,6 +6,7 @@ define(function() {
     var inventory = {
 
 
+
         addItem: function(myItem) {
 
             myInventory.push(myItem);
@@ -27,6 +28,16 @@ define(function() {
 
             return false;
 
+        },
+
+        listItems: function() {
+
+            return myInventory;
+
+        },
+
+        clearInventory: function() {
+            myInventory = [];
         }
 
     };

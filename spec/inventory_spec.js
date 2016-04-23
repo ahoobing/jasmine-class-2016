@@ -17,6 +17,11 @@ define(['inventory'], function(inventory) {
     };
     
     describe("Inventory", function() {
+
+        beforeEach(function() {
+
+            inventory.clearInventory();
+        });
         describe("Add to Inventory", function() {
 
             it('should return true when item is added to inventory successfully', function() {
@@ -30,8 +35,17 @@ define(['inventory'], function(inventory) {
 
             it('should return true when item is removed from the inventory successfully', function(){
 
+                inventory.addItem(item1);
                 expect(inventory.removeItem(item1)).toBe(true);
             });
+
+        describe("Initialize", function() {
+
+            it('should initialize the inventory with no products', function() {
+
+                expect(inventory.listItems().length).toBe(0);
+            });
+        });
 
         });
     })

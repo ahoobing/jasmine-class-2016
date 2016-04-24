@@ -1,4 +1,4 @@
-define(['inventory', 'events'], function(inventory, events) {
+define(['inventory', 'events', 'lib/matchers'], function(inventory, events, matchers) {
     'use strict';
 
     var item1 = {
@@ -27,16 +27,19 @@ define(['inventory', 'events'], function(inventory, events) {
 
         beforeEach(function() {
 
+            jasmine.addMatchers(matchers);
             inventory.clearInventory();
         });
         describe("Add to Inventory", function() {
 
-            xit('should return true when item is added to inventory successfully', function() {
+            it('should return true when item is added to inventory successfully', function() {
 
                 expect(inventory.addItem(item1)).toBe(true);
+                expect(inventory.getItem('TK-421')).toHaveProduct();
+
             });
 
-            it('should post an addItem event when an item has been added to the inventory', function() {
+            xit('should post an addItem event when an item has been added to the inventory', function() {
                spyOn(events, 'publish');
                inventory.addItem(item1);
                inventory.addItem(item2);
@@ -44,10 +47,12 @@ define(['inventory', 'events'], function(inventory, events) {
 
                expect(events.publish.calls.first().args).toEqual(["addedItem", item1]);
                expect(events.publish.calls.mostRecent().args).toEqual(["addedItem", item3]);
-                
+
 
 
             });
+            
+
 
         });
 

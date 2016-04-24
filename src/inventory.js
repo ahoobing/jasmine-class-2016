@@ -48,6 +48,16 @@ define(['events'], function(events) {
                     return myInventory[i].quantity;
                 }
             }
+        },
+
+        getItem: function(upc) {
+            var i = 0;
+            
+            for(i = 0; i < myInventory.length; i++) {
+                if(myInventory[i].upc == upc) {
+                    return myInventory[i];
+                }
+            }
         }
 
 

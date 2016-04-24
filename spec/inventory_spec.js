@@ -56,7 +56,7 @@ define(['inventory', 'events', 'lib/matchers'], function(inventory, events, matc
 
         });
 
-        xdescribe("Remove from Inventory", function() {
+        describe("Remove from Inventory", function() {
 
             it('should return true when item is removed from the inventory successfully', function(){
 
@@ -64,14 +64,14 @@ define(['inventory', 'events', 'lib/matchers'], function(inventory, events, matc
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 
-            xit('should decrement the quantity number when an item is removed successfully', function() {
+            it('should decrement the quantity number when an item is removed successfully', function() {
                 inventory.addItem(item1);
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
             });
 
-        xdescribe("Initialize", function() {
+        describe("Initialize", function() {
 
             it('should initialize the inventory with no products', function() {
 
@@ -79,7 +79,7 @@ define(['inventory', 'events', 'lib/matchers'], function(inventory, events, matc
             });
         });
 
-        xdescribe("Retrieval", function() {
+        describe("Retrieval", function() {
             it('should get all of the products when user requests them', function() {
                 var itemList = [item1, item2];
                 inventory.addItem(item1);
@@ -90,6 +90,29 @@ define(['inventory', 'events', 'lib/matchers'], function(inventory, events, matc
                 });
             });
         });
+
+            describe("Add item after delay", function() {
+                var noop = function() {};
+
+                beforeEach(function() {
+                    spyOn(inventory, "addItem");
+
+                    jasmine.clock().install();
+                });
+
+                afterEach(function() {
+                    jasmine.clock().uninstall();
+                });
+
+                it('should add product after delay', function() {
+                    inventory.addItemAfterDelay(1000, noop, item1);
+                    expect(inventory.addItem).not.toHaveBeenCalled();
+
+                    jasmine.clock().tick(1001);
+
+                    expect(inventory.addItem).toHaveBeenCalled();
+                });
+            });
 
         });
     });

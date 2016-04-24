@@ -52,12 +52,23 @@ define(['events'], function(events) {
 
         getItem: function(upc) {
             var i = 0;
-            
+
             for(i = 0; i < myInventory.length; i++) {
                 if(myInventory[i].upc == upc) {
                     return myInventory[i];
                 }
             }
+        },
+
+
+        addItemAfterDelay: function(delay, callback) {
+            var timeoutDelay = Array.prototype.shift.call(arguments);
+            var callback = Array.prototype.shift.call(arguments);
+            var operands = arguments;
+
+            setTimeout( function() {
+                callback(inventory.addItem.apply(this, operands));
+            }, timeoutDelay);
         }
 
 

@@ -1,5 +1,5 @@
 
-define(['events'], function(events) {
+define(['events','jquery'], function(events, $) {
     'use strict';
 
     var myInventory = [];
@@ -7,12 +7,22 @@ define(['events'], function(events) {
     var inventory = {
 
 
-        addItem: function(myItem) {
+        addItem: function(myItem, finished) {
 
-            myInventory.push(myItem);
-            events.publish('addedItem', myItem);
 
-            return true;
+            $.get('http://numbersapi.com/421/trivia', function(fact) {
+
+                myItem.fact = fact;
+
+                myInventory.push(myItem);
+                events.publish('addedItem', myItem);
+
+                console.log('fact = ' + fact);
+                finished(true);
+            });
+
+
+
 
         },
 

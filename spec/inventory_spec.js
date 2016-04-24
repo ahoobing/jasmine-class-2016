@@ -31,13 +31,13 @@ define(['inventory', 'events'], function(inventory, events) {
         });
         describe("Add to Inventory", function() {
 
-            it('should return true when item is added to inventory successfully', function() {
+            xit('should return true when item is added to inventory successfully', function() {
 
                 expect(inventory.addItem(item1)).toBe(true);
             });
 
             it('should post an addItem event when an item has been added to the inventory', function() {
-               spyOn(events, 'publish');
+               spyOn(events, 'publish').and.callThrough();
                inventory.addItem(item1);
                expect(events.publish).toHaveBeenCalled();
                expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
@@ -46,7 +46,7 @@ define(['inventory', 'events'], function(inventory, events) {
 
         });
 
-        describe("Remove from Inventory", function() {
+        xdescribe("Remove from Inventory", function() {
 
             it('should return true when item is removed from the inventory successfully', function(){
 
@@ -54,14 +54,14 @@ define(['inventory', 'events'], function(inventory, events) {
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 
-            it('should decrement the quantity number when an item is removed successfully', function() {
+            xit('should decrement the quantity number when an item is removed successfully', function() {
                 inventory.addItem(item1);
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
             });
 
-        describe("Initialize", function() {
+        xdescribe("Initialize", function() {
 
             it('should initialize the inventory with no products', function() {
 
@@ -69,7 +69,7 @@ define(['inventory', 'events'], function(inventory, events) {
             });
         });
 
-        describe("Retrieval", function() {
+        xdescribe("Retrieval", function() {
             it('should get all of the products when user requests them', function() {
                 var itemList = [item1, item2];
                 inventory.addItem(item1);

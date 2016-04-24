@@ -1,4 +1,5 @@
-define(function() {
+
+define(['events'], function(events) {
     'use strict';
 
     var myInventory = [];
@@ -6,10 +7,10 @@ define(function() {
     var inventory = {
 
 
-
         addItem: function(myItem) {
 
             myInventory.push(myItem);
+            events.publish('addedItem', myItem);
 
             return true;
 

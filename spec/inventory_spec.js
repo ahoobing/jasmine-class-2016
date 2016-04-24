@@ -1,4 +1,4 @@
-define(['inventory'], function(inventory) {
+define(['inventory', 'events'], function(inventory, events) {
     'use strict';
 
     var item1 = {
@@ -36,6 +36,14 @@ define(['inventory'], function(inventory) {
                 expect(inventory.addItem(item1)).toBe(true);
             });
 
+            it('should post an addItem event when an item has been added to the inventory', function() {
+               spyOn(events, 'publish');
+               inventory.addItem(item1);
+               expect(events.publish).toHaveBeenCalled();
+               expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
+
+            });
+
         });
 
         describe("Remove from Inventory", function() {
@@ -51,7 +59,7 @@ define(['inventory'], function(inventory) {
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
-            })
+            });
 
         describe("Initialize", function() {
 

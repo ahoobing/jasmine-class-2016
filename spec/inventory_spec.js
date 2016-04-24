@@ -39,7 +39,12 @@ define(['inventory', 'events'], function(inventory, events) {
             it('should post an addItem event when an item has been added to the inventory', function() {
                spyOn(events, 'publish');
                inventory.addItem(item1);
-               expect(events.publish).toHaveBeenCalledWith(jasmine.any(String), jasmine.any(Object));
+               inventory.addItem(item2);
+               inventory.addItem(item3);
+
+               expect(events.publish.calls.first().args).toEqual(["addedItem", item1]);
+               expect(events.publish.calls.mostRecent().args).toEqual(["addedItem", item3]);
+                
 
 
             });

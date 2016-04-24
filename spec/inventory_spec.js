@@ -41,6 +41,9 @@ define(['inventory', 'events'], function(inventory, events) {
                inventory.addItem(item1);
                expect(events.publish.calls.count()).toEqual(1);
 
+                inventory.addItem(item2);
+                expect(events.publish.calls.count()).toEqual(2);
+
 
             });
 

@@ -15,6 +15,13 @@ define(['inventory'], function(inventory) {
         quantity: 12,
         upc: 'FALCON'
     };
+
+    var item3 = {
+        name: 'Boba Fet Mask',
+        price: 250.00,
+        quantity: 24,
+        upc: 'CARBONITE'
+    };
     
     describe("Inventory", function() {
 
@@ -47,6 +54,18 @@ define(['inventory'], function(inventory) {
             });
         });
 
+        describe("Retrieval", function() {
+            it('should get all of the products when user requests them', function() {
+                var itemList = [item1, item2];
+                inventory.addItem(item1);
+                inventory.addItem(item2);
+
+                itemList.forEach(function(item){
+                    expect(inventory.listItems()).toContain(item);
+                });
+            });
         });
-    })
+
+        });
+    });
 });

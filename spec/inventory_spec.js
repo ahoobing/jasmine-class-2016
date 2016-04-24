@@ -46,6 +46,13 @@ define(['inventory'], function(inventory) {
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 
+            it('should decrement the quantity number when an item is removed successfully', function() {
+                inventory.addItem(item1);
+                inventory.removeItem(item2);
+
+                expect(inventory.getQuantity('TK-421')).toEqual(420);
+            })
+
         describe("Initialize", function() {
 
             it('should initialize the inventory with no products', function() {

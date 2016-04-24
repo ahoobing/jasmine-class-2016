@@ -37,10 +37,12 @@ define(['inventory', 'events'], function(inventory, events) {
             });
 
             it('should post an addItem event when an item has been added to the inventory', function() {
-               spyOn(events, 'publish').and.throwError('MYERROR');
-               expect(function() {inventory.addItem(item1)}).toThrowError('MYERROR');
-
-
+               spyOn(events, 'publish').and.callFake(function() {
+                   alert('Guido shot first');
+               });
+               inventory.addItem(item1);
+               expect(events.publish).toHaveBeenCalled();
+               expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
 
             });
 

@@ -26,12 +26,27 @@ define(['inventory'], function(inventory) {
     describe("Inventory", function() {
 
         beforeEach(function() {
-
             inventory.clearInventory();
         });
+
+        describe("Initialize inventory", function() {
+
+            it('should clear out the inventory when clearInventory is called', function() {
+
+                expect(inventory.myInventory.length).toEqual(0);
+            });
+
+            it('should define myInventory', function() {
+
+                expect(inventory.myInventory).toBeDefined();
+            });
+        });
+
         describe("Add to Inventory", function() {
 
+
             it('should return true when item is added to inventory successfully', function() {
+
 
                 expect(inventory.addItem(item1)).toBe(true);
             });
@@ -46,12 +61,6 @@ define(['inventory'], function(inventory) {
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 
-        describe("Initialize", function() {
-
-            it('should initialize the inventory with no products', function() {
-
-                expect(inventory.listItems().length).toBe(0);
-            });
         });
 
         describe("Retrieval", function() {
@@ -66,6 +75,6 @@ define(['inventory'], function(inventory) {
             });
         });
 
-        });
     });
+
 });

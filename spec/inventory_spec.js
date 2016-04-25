@@ -22,6 +22,14 @@ define(['inventory'], function(inventory) {
 
             inventory.clearInventory();
         });
+
+        describe("Initialize", function() {
+
+            it('should define myInventory', function() {
+                expect(inventory.myInventory).toBeDefined();
+            });
+        });
+
         describe("Add to Inventory", function() {
 
             it('should return true when item is added to inventory successfully', function() {
@@ -38,14 +46,6 @@ define(['inventory'], function(inventory) {
                 inventory.addItem(item1);
                 expect(inventory.removeItem(item1)).toBe(true);
             });
-
-        describe("Initialize", function() {
-
-            it('should initialize the inventory with no products', function() {
-
-                expect(inventory.listItems().length).toBe(0);
-            });
-        });
 
         });
     })

@@ -7,7 +7,7 @@ define(['inventory', 'events'], function(inventory, events) {
         quantity: 421,
         upc: 'TK-421'
 
-        };
+    };
 
     var item2 = {
         name: 'Han Solo Vest',
@@ -22,7 +22,9 @@ define(['inventory', 'events'], function(inventory, events) {
         quantity: 24,
         upc: 'CARBONITE'
     };
-    
+
+
+
     describe("Inventory", function() {
 
         beforeEach(function() {
@@ -31,19 +33,13 @@ define(['inventory', 'events'], function(inventory, events) {
         });
         describe("Add to Inventory", function() {
 
-            xit('should return true when item is added to inventory successfully', function() {
-
-                expect(inventory.addItem(item1)).toBe(true);
-            });
-
-            it('should post an addItem event when an item has been added to the inventory', function() {
-               spyOn(events, 'publish');
-               inventory.addItem(item1);
-               expect(events.publish.calls.count()).toEqual(1);
+            it('should return true when item is added to inventory successfully', function() {
+                spyOn(events, 'publish');
+                inventory.addItem(item1);
+                expect(events.publish.calls.count()).toEqual(1);
 
                 inventory.addItem(item2);
                 expect(events.publish.calls.count()).toEqual(2);
-
 
             });
 
@@ -57,12 +53,15 @@ define(['inventory', 'events'], function(inventory, events) {
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 
-            xit('should decrement the quantity number when an item is removed successfully', function() {
+            it('should decrement the quantity number when an item is removed successfully', function() {
                 inventory.addItem(item1);
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
             });
+
+
+        });
 
         xdescribe("Initialize", function() {
 
@@ -84,6 +83,6 @@ define(['inventory', 'events'], function(inventory, events) {
             });
         });
 
-        });
+
     });
 });

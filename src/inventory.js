@@ -1,15 +1,16 @@
 define(function() {
     'use strict';
 
-    var myInventory = [];
+
 
     var inventory = {
 
 
+        myInventory: [],
 
         addItem: function(myItem) {
 
-            myInventory.push(myItem);
+            this.myInventory.push(myItem);
 
             return true;
 
@@ -19,9 +20,9 @@ define(function() {
 
             var i = 0;
             
-            for( i = 0; i < myInventory.length; i++) {
-                if( myInventory[i].upc == myItem.upc) {
-                    myInventory[i].quantity -= 1;
+            for( i = 0; i < this.myInventory.length; i++) {
+                if( this.myInventory[i].upc == myItem.upc) {
+                    this.myInventory[i].quantity -= 1;
                     return true;
                 }
             }
@@ -32,19 +33,19 @@ define(function() {
 
         listItems: function() {
 
-            return myInventory;
+            return this.myInventory;
 
         },
 
         clearInventory: function() {
-            myInventory = [];
+            this.myInventory = [];
         },
 
         getQuantity: function(upc) {
             var i = 0;
-            for( i = 0; i < myInventory.length; i++) {
-                if (myInventory[i].upc === upc) {
-                    return myInventory[i].quantity;
+            for( i = 0; i < this.myInventory.length; i++) {
+                if (this.myInventory[i].upc === upc) {
+                    return this.myInventory[i].quantity;
                 }
             }
         }

@@ -55,28 +55,31 @@ define(['inventory', 'events'], function(inventory, events) {
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
-            })
-
-            describe("Initialize", function() {
-
-                it('should initialize the inventory with no products', function() {
-
-                    expect(inventory.listItems().length).toBe(0);
-                });
             });
 
-            describe("Retrieval", function() {
-                it('should get all of the products when user requests them', function() {
-                    var itemList = [item1, item2];
-                    inventory.addItem(item1);
-                    inventory.addItem(item2);
 
-                    itemList.forEach(function(item){
-                        expect(inventory.listItems()).toContain(item);
-                    });
+
+        });
+
+
+        describe("Initialize", function() {
+
+            it('should initialize the inventory with no products', function() {
+
+                expect(inventory.listItems().length).toBe(0);
+            });
+        });
+
+        describe("Retrieval", function() {
+            it('should get all of the products when user requests them', function() {
+                var itemList = [item1, item2];
+                inventory.addItem(item1);
+                inventory.addItem(item2);
+
+                itemList.forEach(function(item){
+                    expect(inventory.listItems()).toContain(item);
                 });
             });
-
         });
 
         });

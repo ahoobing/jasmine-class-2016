@@ -23,8 +23,7 @@ define(['inventory', 'events'], function(inventory, events) {
         upc: 'CARBONITE'
     };
 
-    expect(events.publish).toHaveBeenCalled();
-    expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
+
     
     describe("Inventory", function() {
 
@@ -35,16 +34,10 @@ define(['inventory', 'events'], function(inventory, events) {
         describe("Add to Inventory", function() {
 
             it('should return true when item is added to inventory successfully', function() {
-
+                spyOn(events, "publish");
                 expect(inventory.addItem(item1)).toBe(true);
-            });
-
-            it('should post an addItem event when an item has been added to the inventory', function() {
-               spyOn(events, 'publish');
-               inventory.addItem(item1);
-               expect(events.publish).toHaveBeenCalled();
-               expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
-
+                expect(events.publish).toHaveBeenCalled();
+                expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
             });
 
         });
@@ -62,28 +55,29 @@ define(['inventory', 'events'], function(inventory, events) {
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
-            });
+            })
 
-        describe("Initialize", function() {
+            describe("Initialize", function() {
 
-            it('should initialize the inventory with no products', function() {
+                it('should initialize the inventory with no products', function() {
 
-                expect(inventory.listItems().length).toBe(0);
-            });
-        });
-
-        describe("Retrieval", function() {
-            it('should get all of the products when user requests them', function() {
-                var itemList = [item1, item2];
-                inventory.addItem(item1);
-                inventory.addItem(item2);
-
-                itemList.forEach(function(item){
-                    expect(inventory.listItems()).toContain(item);
+                    expect(inventory.listItems().length).toBe(0);
                 });
             });
+
+            describe("Retrieval", function() {
+                it('should get all of the products when user requests them', function() {
+                    var itemList = [item1, item2];
+                    inventory.addItem(item1);
+                    inventory.addItem(item2);
+
+                    itemList.forEach(function(item){
+                        expect(inventory.listItems()).toContain(item);
+                    });
+                });
+            });
+
         });
 
         });
-    });
 });

@@ -26,9 +26,15 @@ define(function() {
 
             return false;
 
+        },
+
+        clearInventory: function() {
+            this.myInventory = [];
         }
 
     };
+
+
 
     console.log('My Inventory App');
 

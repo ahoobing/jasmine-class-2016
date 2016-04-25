@@ -4,6 +4,18 @@ define(['events','jquery','underscore', 'backbone'], function(events, $, _, Back
     return Backbone.Model.extend( {
         defaults: {
             inventory: null
+        },
+
+        addItem: function(item) {
+
+            this.set('inventory', item);
+
+        },
+
+        removeItem: function() {
+
+            this.set('inventory', '');
+
         }
 
         });

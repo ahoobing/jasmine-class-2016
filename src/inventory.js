@@ -1,14 +1,13 @@
 define(function() {
     'use strict';
-
-    var myInventory = [];
-
+    
     var inventory = {
 
+        myInventory: [],
 
         addItem: function(myItem) {
 
-            myInventory.push(myItem);
+            this.myInventory.push(myItem);
 
             return true;
 
@@ -18,9 +17,9 @@ define(function() {
 
             var i = 0;
             
-            for( i = 0; i < myInventory.length; i++) {
-                if( myInventory[i].upc == myItem.upc) {
-                    myInventory[i].quantity -= 1;
+            for( i = 0; i < this.myInventory.length; i++) {
+                if( this.myInventory[i].upc == myItem.upc) {
+                    this.myInventory[i].quantity -= 1;
                     return true;
                 }
             }

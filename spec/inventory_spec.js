@@ -51,7 +51,11 @@ define(['inventory'], function(inventory) {
                 inventory.removeItem(item2);
 
                 expect(inventory.getQuantity('TK-421')).toEqual(420);
-            })
+            });
+
+
+
+        });
 
         describe("Initialize", function() {
 
@@ -71,8 +75,6 @@ define(['inventory'], function(inventory) {
                     expect(inventory.listItems()).toContain(item);
                 });
             });
-        });
-
         });
     });
 });

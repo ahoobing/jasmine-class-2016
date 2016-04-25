@@ -29,7 +29,7 @@ define(['inventory'], function(inventory) {
         describe("Remove from Inventory", function() {
 
             it('should return true when item is removed from the inventory successfully', function(){
-
+                inventory.addItem(item1);
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 

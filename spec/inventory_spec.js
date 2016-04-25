@@ -22,6 +22,9 @@ define(['inventory', 'events'], function(inventory, events) {
         quantity: 24,
         upc: 'CARBONITE'
     };
+
+    expect(events.publish).toHaveBeenCalled();
+    expect(events.publish).toHaveBeenCalledWith('addedItem', item1);
     
     describe("Inventory", function() {
 

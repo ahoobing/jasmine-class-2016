@@ -5,7 +5,7 @@
         events = {};
 
     self.publish = function publish(eventName, data) {
-        //alert('han shot first');
+        alert('han shot first');
         var subscribers, x, length;
 
         if (!events[eventName]) {

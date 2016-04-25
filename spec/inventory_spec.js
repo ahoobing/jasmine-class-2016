@@ -17,7 +17,15 @@ define(['inventory'], function(inventory) {
     };
     
     describe("Inventory", function() {
+        describe("Initialize", function() {
+
+            it('should define myInventory', function() {
+                expect(inventory.myInventory).toBeDefined();
+            });
+        });
+
         describe("Add to Inventory", function() {
+
 
             it('should return true when item is added to inventory successfully', function() {
 
@@ -29,7 +37,7 @@ define(['inventory'], function(inventory) {
         describe("Remove from Inventory", function() {
 
             it('should return true when item is removed from the inventory successfully', function(){
-
+                inventory.addItem(item1);
                 expect(inventory.removeItem(item1)).toBe(true);
             });
 

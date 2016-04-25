@@ -17,7 +17,12 @@ define(['inventory'], function(inventory) {
     };
     
     describe("Inventory", function() {
-        describe("Initialize", function() {
+        describe("Initialize inventory", function() {
+
+            it('should clear out the inventory when clearInventory is called', function() {
+                inventory.clearInventory();
+                expect(inventory.myInventory.length).toEqual(0);
+            });
 
             it('should define myInventory', function() {
                 expect(inventory.myInventory).toBeDefined();

@@ -10,7 +10,7 @@ define(['InventoryModel'], function(InventoryModel) {
         });
 
         it('should have the correct default values', function() {
-            expect(this.myModel.defaults.inventory).toBeNull();
+            expect(this.myModel.defaults.inventory).toBeDefined();
         });
     });
 

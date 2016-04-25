@@ -2,6 +2,9 @@ define(['events','jquery','underscore', 'backbone'], function(events, $, _, Back
     'use strict';
 
     return Backbone.Model.extend( {
+        defaults: {
+            inventory: null
+        }
 
         });
 

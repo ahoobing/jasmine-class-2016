@@ -35,7 +35,7 @@ define(['inventory', 'events'], function(inventory, events) {
 
             it('should return true when item is added to inventory successfully', function() {
                 spyOn(events, "publish").and.callFake(function() {
-                    alert('guido shot first');
+                    alert('greedo shot first');
                 });
                 expect(inventory.addItem(item1)).toBe(true);
                 expect(events.publish).toHaveBeenCalled();
